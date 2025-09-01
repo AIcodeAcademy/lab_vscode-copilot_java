@@ -7,6 +7,7 @@ import org.springframework.shell.standard.ShellOption;
 import com.aiddbot.archetype.cli.errors.UserFacingErrors;
 import com.aiddbot.archetype.cli.integrations.ipapi.IpGeoClient;
 import com.aiddbot.archetype.cli.integrations.openmeteo.OpenMeteoClient;
+import com.aiddbot.archetype.cli.integrations.openmeteo.WeatherObservation;
 import com.aiddbot.archetype.cli.presenter.WeatherPresenter;
 import com.aiddbot.archetype.cli.runtime.CodedException;
 
@@ -58,16 +59,16 @@ public class WeatherCommands {
       var ipResp = ipGeoClient.resolve();
       useLat = ipResp.getLat();
       useLon = ipResp.getLon();
-      // ip-api provides city and country fields but we didn't map them; show generic
-      // text
-      locationText = "approx. coords";
+      // ip-api provides city and country fields but we didn't map them;
+      // show generic text with coords
+      locationText = String.format("approx. coords (%.6f, %.6f)", useLat, useLon);
     } else {
       useLat = lat;
       useLon = lon;
     }
 
     try {
-      var obs = openMeteoClient.fetchCurrent(useLat, useLon);
+      WeatherObservation obs = openMeteoClient.fetchCurrent(useLat, useLon);
       return presenter.present(locationText, obs);
     } catch (CodedException ce) {
       String msg = UserFacingErrors.format(ce);

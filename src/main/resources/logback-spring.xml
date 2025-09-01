@@ -31,7 +31,33 @@
     </encoder>
   </appender>
 
-  <root level="${ROOT_LOG_LEVEL}">
-    <appender-ref ref="STDOUT" />
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/app-%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>100MB</totalSizeCap>
+    </rollingPolicy>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <fieldNames>
+        <timestamp>timestamp</timestamp>
+        <level>level</level>
+        <logger>logger</logger>
+        <thread>thread</thread>
+        <message>message</message>
+        <version>schemaVersion</version>
+      </fieldNames>
+      <!-- Include MDC and exception as structured fields -->
+      <includeMdc>true</includeMdc>
+      <includeContext>true</includeContext>
+      <includeStructuredArguments>true</includeStructuredArguments>
+      <includeMarkers>true</includeMarkers>
+      <writeVersionAsInteger>false</writeVersionAsInteger>
+      <customFields>{"app":"${appName}","version":"${appVersion}"}</customFields>
+    </encoder>
+  </appender>
+
+  <root level="ERROR">
+    <appender-ref ref="FILE" level="INFO" />
+    <appender-ref ref="STDOUT" level="ERROR" />
   </root>
 </configuration>
