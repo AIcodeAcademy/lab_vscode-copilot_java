@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+  <!-- Silence internal Logback status messages to keep stdout JSON-only -->
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+  <!-- Resolve Spring properties if available -->
+  <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="app" />
+  <springProperty scope="context" name="appVersion" source="app.version" defaultValue="dev" />
+  <!-- Allow overriding root level via Spring property logging.level.root, else env var
+  LOGGING_LEVEL_ROOT, else INFO -->
+  <springProperty scope="context" name="springRootLogLevel" source="logging.level.root"
+    defaultValue="" />
+  <property name="ROOT_LOG_LEVEL" value="${springRootLogLevel:-${LOGGING_LEVEL_ROOT:-INFO}}" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <fieldNames>
+        <timestamp>timestamp</timestamp>
+        <level>level</level>
+        <logger>logger</logger>
+        <thread>thread</thread>
+        <message>message</message>
+        <version>schemaVersion</version>
+      </fieldNames>
+      <!-- Include MDC and exception as structured fields -->
+      <includeMdc>true</includeMdc>
+      <includeContext>true</includeContext>
+      <includeStructuredArguments>true</includeStructuredArguments>
+      <includeMarkers>true</includeMarkers>
+      <writeVersionAsInteger>false</writeVersionAsInteger>
+      <customFields>{"app":"${appName}","version":"${appVersion}"}</customFields>
+    </encoder>
+  </appender>
+
+  <root level="${ROOT_LOG_LEVEL}">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

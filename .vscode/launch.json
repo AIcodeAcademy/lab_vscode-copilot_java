@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-ArchetypeJavaCliApplication<archetype-java-cli>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.aiddbot.archetype.cli.ArchetypeJavaCliApplication",
+      "projectName": "archetype-java-cli",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
