@@ -26,6 +26,14 @@ public class IpGeoResponse {
   /** Longitude in decimal degrees. */
   private Double lon;
 
+  @JsonProperty("city")
+  /** Optional city name returned by the IP geolocation service. */
+  private String city;
+
+  @JsonProperty("country")
+  /** Optional country name returned by the IP geolocation service. */
+  private String country;
+
   public String getStatus() {
     return status;
   }
@@ -56,5 +64,21 @@ public class IpGeoResponse {
 
   public void setLon(Double lon) {
     this.lon = lon;
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 }

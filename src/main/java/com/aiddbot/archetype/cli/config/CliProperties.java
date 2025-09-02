@@ -5,6 +5,7 @@ import java.net.URI;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,8 +13,8 @@ import jakarta.validation.constraints.NotNull;
 @ConfigurationProperties(prefix = "cli")
 public class CliProperties {
 
-  private final Network network = new Network();
-  private final Endpoints endpoints = new Endpoints();
+  @Valid private final Network network = new Network();
+  @Valid private final Endpoints endpoints = new Endpoints();
 
   public Network getNetwork() {
     return network;

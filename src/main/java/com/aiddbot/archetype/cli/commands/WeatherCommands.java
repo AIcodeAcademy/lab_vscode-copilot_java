@@ -59,12 +59,18 @@ public class WeatherCommands {
       var ipResp = ipGeoClient.resolve();
       useLat = ipResp.getLat();
       useLon = ipResp.getLon();
-      // ip-api provides city and country fields but we didn't map them;
-      // show generic text with coords
-      locationText = String.format("approx. coords (%.6f, %.6f)", useLat, useLon);
+      // Prefer human-friendly place name when available
+      if (ipResp.getCity() != null && ipResp.getCountry() != null) {
+        locationText = String.format(
+            "approx. location: %s, %s (lat %.4f, lon %.4f)",
+            ipResp.getCity(), ipResp.getCountry(), useLat, useLon);
+      } else {
+        locationText = String.format("approx. location (lat %.4f, lon %.4f)", useLat, useLon);
+      }
     } else {
       useLat = lat;
       useLon = lon;
+      locationText = String.format("selected location (lat %.4f, lon %.4f)", useLat, useLon);
     }
 
     try {
