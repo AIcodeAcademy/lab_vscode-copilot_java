@@ -11,48 +11,8 @@
   "boot-java.rewrite.reconcile": true,
   "chat.agent.maxRequests": 100,
   "chat.mcp.autostart": "newAndOutdated",
-  "cSpell.customDictionaries": {
-    "word-up": {
-      "addWords": true,
-      "description": "Personal dictionary",
-      "name": "personal",
-      "path": "~/OneDrive/personal-dictionary.txt",
-      "scope": "user"
-    }
-  },
   "cSpell.diagnosticLevel": "Hint",
   "cSpell.language": "en,es",
-  "editor.autoClosingBrackets": "always",
-  "editor.autoIndent": "full",
-  "editor.codeActionsOnSave": {
-    "source.addMissingImports": "explicit",
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
-  "editor.cursorBlinking": "expand",
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.detectIndentation": false,
-  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
-  "editor.fontLigatures": false,
-  "editor.fontSize": 16,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.formatOnType": false,
-  "editor.glyphMargin": false,
-  "editor.guides.bracketPairs": false,
-  "editor.hover.above": true,
-  "editor.hover.sticky": true,
-  "editor.inlineSuggest.enabled": true,
-  "editor.linkedEditing": true,
-  "editor.minimap.enabled": false,
-  "editor.parameterHints.enabled": false,
-  "editor.renderWhitespace": "none",
-  "editor.tabSize": 2,
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 100,
-  "explorer.compactFolders": false,
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
   "files.associations": {},
   "files.exclude": {
     "**/.DS_Store": true,
@@ -63,8 +23,6 @@
     "**/.git/subtree-cache/**": true,
     "dist/": true
   },
-  "git.autofetch": true,
-  "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "github.copilot.advanced": {
     "inlineSuggest": true,
@@ -78,7 +36,6 @@
       "text": "Group changes into logical commits.Create commits with clear messages that describe the changes made to the codebase following conventional commit guidelines. Keep commits linked to features, tasks, or issues when applicable."
     }
   ],
-  "github.copilot.chat.languageContext.typescript.enabled": true,
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
@@ -90,18 +47,23 @@
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "material-icon-theme.files.associations": {
+    "*.briefing.md": "apiblueprint",
     "*.chatmode.md": "robot",
+    "*.design.md": "todo",
     "*.instructions.md": "robot",
     "*.prompt.md": "robot",
-    "*.spec.md": "conduct",
-    "*.tasks.md": "conduct",
+    "*.spec.md": "todo",
+    "*.plan.md": "todo",
     "*.template.md": "template",
+    "*.tasks.md": "todo",
     "*.test.md": "verified",
-    "BACKLOG.md": "conduct",
+    "BACKLOG.md": "todo",
     "DOMAIN.md": "architecture",
-    "JOURNAL.md": "robot",
+    "JOURNAL.md": "changelog",
+    "MANUAL.md": "lib",
     "PRD.md": "architecture",
-    "STRUCTURE.md": "tree"
+    "STRUCTURE.md": "tree",
+    "SYSTEMS.md": "architecture"
   },
   "material-icon-theme.folders.associations": {
     ".ai": "robot",
@@ -124,15 +86,10 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.preferredDarkColorTheme": "Default Dark Modern",
   "workbench.preferredLightColorTheme": "Default Light Modern",
-  "workbench.settings.applyToAllProfiles": [
-    "editor",
-    "window.autoDetectColorScheme",
-    "window.zoomPerWindow",
-    "window.zoomLevel",
-    "workbench.*",
-    "editor.fontSize",
-    "editor.fontFamily"
-  ],
+  "workbench.colorCustomizations": {
+    "titleBar.border": "#00aaff",
+    "statusBar.border": "#007700",
+  },
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic"
 }
